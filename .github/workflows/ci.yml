@@ -5,6 +5,7 @@ on:
     branches:
       - develop
       - master
+      - ci/windows
   pull_request:
 
 jobs:
@@ -50,8 +51,11 @@ jobs:
             toxenv: py38-3.2.X
           - python: 3.9
             toxenv: py39-3.2.X
+        os:
+          - ubuntu-latest
+          - windows-latest
 
-    runs-on: ubuntu-latest
+    runs-on: ${{ matrix.os }}
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-python@v2
